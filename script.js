@@ -1,13 +1,17 @@
 import { WORDS } from './words.js'
 
+//  Globals //
+
 let solution = WORDS[Math.floor(Math.random() * WORDS.length)]
 console.log(solution)
+
+// Functions //
 
 const initGameBoard = () => {
   //make "game-board-and-keyboard" flex
   let gameBoardAndKeyboardDiv = document.createElement('div')
   gameBoardAndKeyboardDiv.className = 'game-board-and-keyboard'
-  document.body.appendChild(gameBoardAndKeyboardDiv)
+  document.body.prepend(gameBoardAndKeyboardDiv)
   //make "game-board-Container" flex
   let gameBoardContainerDiv = document.createElement('div')
   gameBoardContainerDiv.className = 'game-board-container'
@@ -29,5 +33,10 @@ const initGameBoard = () => {
     }
     gameBoardDiv.append(row)
   }
+  let h1 = document.createElement('h1')
+  document.body.prepend(h1)
+  h1.innerText = 'Wordle Clone'
 }
 initGameBoard()
+
+// Listeners //
