@@ -10,15 +10,24 @@ const initGameBoard = () => {
   document.body.appendChild(gameBoardAndKeyboardDiv)
   //make "game-board-Container" flex
   let gameBoardContainerDiv = document.createElement('div')
-  gameBoardContainerDiv.className = 'game-board-Container'
+  gameBoardContainerDiv.className = 'game-board-container'
   gameBoardAndKeyboardDiv.appendChild(gameBoardContainerDiv)
   //make "game-board" grid
+  let gameBoardDiv = document.createElement('div')
+  gameBoardDiv.className = 'game-board'
+  gameBoardContainerDiv.appendChild(gameBoardDiv)
 
   for (let i = 0; i < 6; i++) {
     //make a new row (grid)
+    let row = document.createElement('div')
+    row.className = `row`
     for (let j = 0; j < 5; j++) {
+      let letterBox = document.createElement('div')
       //make 5 containers in the row (flex)
+      letterBox.className = `letter-box`
+      row.appendChild(letterBox)
     }
+    gameBoardDiv.append(row)
   }
 }
 initGameBoard()
