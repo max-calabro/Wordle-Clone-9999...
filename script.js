@@ -40,3 +40,12 @@ const initGameBoard = () => {
 initGameBoard()
 
 // Listeners //
+document.addEventListener(
+  'keydown',
+  (event) => {
+    var name = event.key
+    var code = event.code
+    alert(`Key pressed: ${name} \r\nKey code value: ${code}`)
+  },
+  false
+)
