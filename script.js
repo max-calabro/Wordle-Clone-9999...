@@ -1,6 +1,7 @@
 import { WORDS } from './words.js'
 
 //  Globals //
+let CURRENT_ROW = 0
 
 let solution = WORDS[Math.floor(Math.random() * WORDS.length)]
 console.log(solution)
@@ -39,13 +40,20 @@ const initGameBoard = () => {
 }
 initGameBoard()
 
+const keyboardPressed = (e) => {
+  var name = e.key
+  var code = e.code
+  console.log(`Key pressed: ${name} \r\nKey code value: ${code}`)
+
+  let row = document.getElementsByClassName('row')
+  console.log(row[CURRENT_ROW])
+}
+
 // Listeners //
 document.addEventListener(
   'keydown',
   (event) => {
-    var name = event.key
-    var code = event.code
-    alert(`Key pressed: ${name} \r\nKey code value: ${code}`)
+    keyboardPressed(event)
   },
   false
 )
