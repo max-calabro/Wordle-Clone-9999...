@@ -47,6 +47,17 @@ const keyboardPressed = (e) => {
 
   let row = document.getElementsByClassName('row')
   console.log(row[CURRENT_ROW])
+
+  //if key pressed was a letter, lowercase or uppercase
+  if (code >= 65 && code <= 90) {
+    //console.log('uppercase')
+  } else if (code >= 97 && code <= 122) {
+    //console.log('lowercase')
+  } else if (code === 'Enter') {
+    //console.log('enter')
+    //check if the row is filled
+    //true: then check if guess is correct
+  }
 }
 
 // Listeners //
