@@ -2,6 +2,7 @@ import { WORDS } from './words.js'
 
 //  Globals //
 let CURRENT_ROW = 0
+let CURRENT_BOX = 0
 
 let solution = WORDS[Math.floor(Math.random() * WORDS.length)]
 console.log(solution)
@@ -41,18 +42,26 @@ const initGameBoard = () => {
 initGameBoard()
 
 const keyboardPressed = (e) => {
-  var name = e.key
-  var code = e.code
+  console.log(e)
+  let name = e.key
+  console.log(name.toUpperCase())
+  let code = e.keyCode
   console.log(`Key pressed: ${name} \r\nKey code value: ${code}`)
 
   let row = document.getElementsByClassName('row')
-  console.log(row[CURRENT_ROW])
+  console.log(
+    row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
+  )
 
-  //if key pressed was a letter, lowercase or uppercase
-  if (code >= 65 && code <= 90) {
-    //console.log('uppercase')
-  } else if (code >= 97 && code <= 122) {
-    //console.log('lowercase')
+  //if key pressed was a letter or the enter key
+  if (code >= 65 && code <= 122) {
+    // enter letter pressed .toUppercase
+    row[CURRENT_ROW].getElementsByClassName('letter-box')[
+      CURRENT_BOX
+    ].innerHTML = name
+    if (CURRENT_BOX < 4) {
+      CURRENT_BOX++
+    }
   } else if (code === 'Enter') {
     //console.log('enter')
     //check if the row is filled
