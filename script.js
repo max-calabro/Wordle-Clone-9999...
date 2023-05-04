@@ -56,37 +56,36 @@ const keyboardPressed = (e) => {
   //if key pressed was a letter or the enter key
   if (code >= 65 && code <= 122) {
     // enter letter pressed .toUppercase
+    console.log(`1 CURRENT_BOX: ${CURRENT_BOX}`)
     row[CURRENT_ROW].getElementsByClassName('letter-box')[
       CURRENT_BOX
     ].innerHTML = name
-    if (CURRENT_BOX < 4) {
-      CURRENT_BOX++
+    CURRENT_BOX++
+    console.log(`2 CURRENT_BOX: ${CURRENT_BOX}`)
+    if (CURRENT_BOX > 4) {
+      CURRENT_BOX--
     }
+    console.log(`3 CURRENT_BOX: ${CURRENT_BOX}`)
     //if enter is pressed
   } else if (code === 13) {
-    if (CURRENT_BOX === 5) {
+    if (CURRENT_BOX === 4) {
       if (CURRENT_GUESS === SOLUTION) {
         alert(`Correct! The word is ${SOLUTION}`)
       }
     } else console.log('not full')
     //if backspace is pressed
   } else if (code === 8) {
-    //need special case for CURRENT_BOX = 5
-    if (CURRENT_BOX === 5) {
-      row[CURRENT_ROW].getElementsByClassName('letter-box')[
-        CURRENT_BOX
-      ].innerHTML = ''
-      CURRENT_BOX--
+    //if empty: current box--
+    if (
+      row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
+        .innerHTML === ''
+    ) {
     } else {
-      //reduce 1 from current box but not below 0
-      CURRENT_BOX--
-      if (CURRENT_BOX < 0) {
-        CURRENT_BOX = 0
+      if (CURRENT_BOX > 0) {
+        CURRENT_BOX--
       }
-      //remove the letter from the current box
-      row[CURRENT_ROW].getElementsByClassName('letter-box')[
-        CURRENT_BOX
-      ].innerHTML = ''
+      row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
+        .innerHTML === ''
     }
   }
 }
