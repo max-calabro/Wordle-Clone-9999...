@@ -3,9 +3,9 @@ import { WORDS } from './words.js'
 //  Globals //
 let CURRENT_ROW = 0
 let CURRENT_BOX = 0
-
-let solution = WORDS[Math.floor(Math.random() * WORDS.length)]
-console.log(solution)
+let CURRENT_GUESS = ''
+let SOLUTION = WORDS[Math.floor(Math.random() * WORDS.length)]
+console.log(SOLUTION)
 
 // Functions //
 
@@ -62,10 +62,17 @@ const keyboardPressed = (e) => {
     if (CURRENT_BOX < 4) {
       CURRENT_BOX++
     }
-  } else if (code === 'Enter') {
-    //console.log('enter')
-    //check if the row is filled
-    //true: then check if guess is correct
+    //if enter is pressed
+  } else if (code === 13) {
+    if (CURRENT_BOX === 5) {
+      if (CURRENT_GUESS === SOLUTION) {
+        alert(`Correct! The word is ${SOLUTION}`)
+      }
+    } else console.log('not full')
+    //if backspace is pressed
+  } else if (code === 8) {
+    //remove the letter from the current box
+    //reduce 1 from current box but not below 0
   }
 }
 
