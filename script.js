@@ -42,30 +42,33 @@ const initGameBoard = () => {
 initGameBoard()
 
 const keyboardPressed = (e) => {
-  console.log(e)
+  //console.log(e)
   let name = e.key
   console.log(name.toUpperCase())
   let code = e.keyCode
   console.log(`Key pressed: ${name} \r\nKey code value: ${code}`)
-
   let row = document.getElementsByClassName('row')
   console.log(
     row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
   )
 
+  row[CURRENT_ROW].getElementsByClassName('letter-box')[
+    CURRENT_BOX
+  ].style.border = '3px solid blue'
+
   //if key pressed was a letter or the enter key
   if (code >= 65 && code <= 122) {
     // enter letter pressed .toUppercase
-    console.log(`1 CURRENT_BOX: ${CURRENT_BOX}`)
+    //console.log(`1 CURRENT_BOX: ${CURRENT_BOX}`)
     row[CURRENT_ROW].getElementsByClassName('letter-box')[
       CURRENT_BOX
     ].innerHTML = name
     CURRENT_BOX++
-    console.log(`2 CURRENT_BOX: ${CURRENT_BOX}`)
+    //console.log(`2 CURRENT_BOX: ${CURRENT_BOX}`)
     if (CURRENT_BOX > 4) {
       CURRENT_BOX--
     }
-    console.log(`3 CURRENT_BOX: ${CURRENT_BOX}`)
+    //console.log(`3 CURRENT_BOX: ${CURRENT_BOX}`)
     //if enter is pressed
   } else if (code === 13) {
     if (CURRENT_BOX === 4) {
@@ -80,14 +83,21 @@ const keyboardPressed = (e) => {
       row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
         .innerHTML === ''
     ) {
+      console.log('back a box')
+      CURRENT_BOX--
     } else {
-      if (CURRENT_BOX > 0) {
-        CURRENT_BOX--
-      }
+      // if (CURRENT_BOX > 0) {
+      //   CURRENT_BOX--
+      // }
+      console.log('letter removed')
       row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
         .innerHTML === ''
     }
   }
+  row[CURRENT_ROW].getElementsByClassName('letter-box')[
+    CURRENT_BOX - 1
+  ].style.border = '1px solid black'
+  console.log(CURRENT_BOX + ` end`)
 }
 
 // Listeners //
