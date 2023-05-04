@@ -71,8 +71,23 @@ const keyboardPressed = (e) => {
     } else console.log('not full')
     //if backspace is pressed
   } else if (code === 8) {
-    //remove the letter from the current box
-    //reduce 1 from current box but not below 0
+    //need special case for CURRENT_BOX = 5
+    if (CURRENT_BOX === 5) {
+      row[CURRENT_ROW].getElementsByClassName('letter-box')[
+        CURRENT_BOX
+      ].innerHTML = ''
+      CURRENT_BOX--
+    } else {
+      //reduce 1 from current box but not below 0
+      CURRENT_BOX--
+      if (CURRENT_BOX < 0) {
+        CURRENT_BOX = 0
+      }
+      //remove the letter from the current box
+      row[CURRENT_ROW].getElementsByClassName('letter-box')[
+        CURRENT_BOX
+      ].innerHTML = ''
+    }
   }
 }
 
