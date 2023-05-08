@@ -53,8 +53,9 @@ const keyboardPressed = (e) => {
     let boxText = box.innerText
 
     if (boxText === '') {
-      box.innerHTML = key
+      box.innerHTML = key.toUpperCase()
       CURRENT_GUESS += key
+      box.style.border = '2px solid var(--dark-grey)'
       console.log('guess: ' + CURRENT_GUESS)
 
       //increment to next box
@@ -72,10 +73,12 @@ const keyboardPressed = (e) => {
       CURRENT_BOX--
       box = row[0].childNodes[CURRENT_BOX]
       box.innerHTML = ''
+      box.style.border = '2px solid var(--light-grey)'
       CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
       console.log('guess: ' + CURRENT_GUESS)
     } else if (CURRENT_BOX === 4 && boxText != '') {
       box.innerHTML = ''
+      box.style.border = '2px solid var(--light-grey)'
       CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
       console.log('guess: ' + CURRENT_GUESS)
     }

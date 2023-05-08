@@ -1,3 +1,14 @@
+@font-face {
+  font-family: WordleFont;
+  src: url(./TTF/ClearSans-Bold.ttf)
+}
+
+:root {
+  --light-grey: #d3d6da;
+  --dark-grey: #787c7e;
+  --yellow: #c9b458;
+  --green: #6aaa64;
+}
 
 body {
   display: flex;
@@ -48,9 +59,16 @@ h1 {
 }
 
 .letter-box-0,.letter-box-1,.letter-box-2,.letter-box-3,.letter-box-4 {
-  border: 1px solid black;
+  border: 2px solid var(--light-grey);
   height: 52px;
   width: 52px;
+
+  font-family: WordleFont;
+  font-size: 1em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #keyboard-cont {
