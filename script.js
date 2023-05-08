@@ -52,12 +52,21 @@ const keyboardPressed = (e) => {
     let box = row[0].childNodes[CURRENT_BOX]
     box.innerHTML = key
 
+    //increment to next box
     CURRENT_BOX++
     if (CURRENT_BOX > 4) {
       CURRENT_BOX = 4
     }
   } else if (code === 8) {
     //backspace
+    let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
+    let box = row[0].childNodes[CURRENT_BOX]
+    let boxText = box.innerText
+    if (CURRENT_BOX >= 1 && CURRENT_BOX <= 4 && boxText === '') {
+      CURRENT_BOX--
+      box = row[0].childNodes[CURRENT_BOX]
+      box.innerHTML = ''
+    }
   } else if (code === 13) {
     //enter
   }
