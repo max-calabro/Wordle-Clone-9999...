@@ -41,129 +41,82 @@ const initGameBoard = () => {
 }
 initGameBoard()
 
+const letterPressed = (key) => {
+  let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
+  let box = row[0].childNodes[CURRENT_BOX]
+  let boxText = box.innerText
+
+  if (boxText === '') {
+    box.innerHTML = key.toUpperCase()
+    CURRENT_GUESS += key
+    box.style.border = '2px solid var(--dark-grey)'
+    console.log('guess: ' + CURRENT_GUESS)
+
+    //increment to next box
+    CURRENT_BOX++
+    if (CURRENT_BOX > 4) {
+      CURRENT_BOX = 4
+    }
+  }
+}
+
+const backspacePressed = () => {
+  let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
+  let box = row[0].childNodes[CURRENT_BOX]
+  let boxText = box.innerText
+  if (CURRENT_BOX >= 1 && CURRENT_BOX <= 4 && boxText === '') {
+    CURRENT_BOX--
+    box = row[0].childNodes[CURRENT_BOX]
+    box.innerHTML = ''
+    box.style.border = '2px solid var(--light-grey)'
+    CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
+    console.log('guess: ' + CURRENT_GUESS)
+  } else if (CURRENT_BOX === 4 && boxText != '') {
+    box.innerHTML = ''
+    box.style.border = '2px solid var(--light-grey)'
+    CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
+    console.log('guess: ' + CURRENT_GUESS)
+  }
+}
+
+const enterPressed = () => {
+  let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
+  let box = row[0].childNodes[CURRENT_BOX]
+  let boxText = box.innerText
+
+  if (CURRENT_BOX === 4 && boxText != '') {
+    if (CURRENT_GUESS === SOLUTION) {
+      console.log('pog')
+      //write win function
+    } else {
+      console.log('wrong')
+      //if current row is the last -> game over
+      //else move to next row down
+      //empty current guess and current box
+      if (CURRENT_ROW != 5) {
+        CURRENT_ROW++
+        CURRENT_BOX = 0
+        CURRENT_GUESS = ''
+      } else {
+        //game over, cause used all rows
+        console.log('game over')
+      }
+    }
+  }
+}
+
 const keyboardPressed = (e) => {
   let key = e.key
   let code = e.keyCode
   console.log(key, code)
 
   if (code >= 65 && code <= 122) {
-    //letter
-    let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
-    let box = row[0].childNodes[CURRENT_BOX]
-    let boxText = box.innerText
-
-    if (boxText === '') {
-      box.innerHTML = key.toUpperCase()
-      CURRENT_GUESS += key
-      box.style.border = '2px solid var(--dark-grey)'
-      console.log('guess: ' + CURRENT_GUESS)
-
-      //increment to next box
-      CURRENT_BOX++
-      if (CURRENT_BOX > 4) {
-        CURRENT_BOX = 4
-      }
-    }
+    letterPressed(key)
   } else if (code === 8) {
-    //backspace
-    let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
-    let box = row[0].childNodes[CURRENT_BOX]
-    let boxText = box.innerText
-    if (CURRENT_BOX >= 1 && CURRENT_BOX <= 4 && boxText === '') {
-      CURRENT_BOX--
-      box = row[0].childNodes[CURRENT_BOX]
-      box.innerHTML = ''
-      box.style.border = '2px solid var(--light-grey)'
-      CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
-      console.log('guess: ' + CURRENT_GUESS)
-    } else if (CURRENT_BOX === 4 && boxText != '') {
-      box.innerHTML = ''
-      box.style.border = '2px solid var(--light-grey)'
-      CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
-      console.log('guess: ' + CURRENT_GUESS)
-    }
+    backspacePressed()
   } else if (code === 13) {
-    //enter
-    let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
-    let box = row[0].childNodes[CURRENT_BOX]
-    let boxText = box.innerText
-
-    if (CURRENT_BOX === 4 && boxText != '') {
-      if (CURRENT_GUESS === SOLUTION) {
-        console.log('pog')
-        //write win function
-      } else {
-        console.log('wrong')
-        //if current row is the last -> game over
-        //else move to next row down
-        //empty current guess and current box
-        if (CURRENT_ROW != 5) {
-          CURRENT_ROW++
-          CURRENT_BOX = 0
-          CURRENT_GUESS = ''
-        } else {
-          //game over, cause used all rows
-          console.log('game over')
-        }
-      }
-    }
+    enterPressed()
   }
-  // //console.log(e)
-  // let name = e.key
-  // console.log(name.toUpperCase())
-  // let code = e.keyCode
-  // console.log(`Key pressed: ${name} \r\nKey code value: ${code}`)
-  // let row = document.getElementsByClassName('row')
-  // console.log(
-  //   row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
-  // )
-
-  // row[CURRENT_ROW].getElementsByClassName('letter-box')[
-  //   CURRENT_BOX
-  // ].style.border = '3px solid blue'
-
-  // //if key pressed was a letter or the enter key
-  // if (code >= 65 && code <= 122) {
-  //   // enter letter pressed .toUppercase
-  //   //console.log(`1 CURRENT_BOX: ${CURRENT_BOX}`)
-  //   row[CURRENT_ROW].getElementsByClassName('letter-box')[
-  //     CURRENT_BOX
-  //   ].innerHTML = name
-  //   CURRENT_BOX++
-  //   //console.log(`2 CURRENT_BOX: ${CURRENT_BOX}`)
-  //   if (CURRENT_BOX > 4) {
-  //     CURRENT_BOX--
-  //   }
-  //   //console.log(`3 CURRENT_BOX: ${CURRENT_BOX}`)
-  //   //if enter is pressed
-  // } else if (code === 13) {
-  //   if (CURRENT_BOX === 4) {
-  //     if (CURRENT_GUESS === SOLUTION) {
-  //       alert(`Correct! The word is ${SOLUTION}`)
-  //     }
-  //   } else console.log('not full')
-  //   //if backspace is pressed
-  // } else if (code === 8) {
-  //   //if empty: current box--
-  //   if (
-  //     row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
-  //       .innerHTML === ''
-  //   ) {
-  //     console.log('back a box')
-  //     CURRENT_BOX--
-  //   } else {
-  //     // if (CURRENT_BOX > 0) {
-  //     //   CURRENT_BOX--
-  //     // }
-  //     console.log('letter removed')
-  //     row[CURRENT_ROW].getElementsByClassName('letter-box')[CURRENT_BOX]
-  //       .innerHTML === ''
-  //   }
-  // }
-  // row[CURRENT_ROW].getElementsByClassName('letter-box')[
-  //   CURRENT_BOX - 1
-  // ].style.border = '1px solid black'
-  // console.log(CURRENT_BOX + ` end`)
 }
 
 // Listeners //
