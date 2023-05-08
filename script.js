@@ -50,12 +50,16 @@ const keyboardPressed = (e) => {
     //letter
     let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
     let box = row[0].childNodes[CURRENT_BOX]
-    box.innerHTML = key
+    let boxText = box.innerText
 
-    //increment to next box
-    CURRENT_BOX++
-    if (CURRENT_BOX > 4) {
-      CURRENT_BOX = 4
+    if (boxText === '') {
+      box.innerHTML = key
+
+      //increment to next box
+      CURRENT_BOX++
+      if (CURRENT_BOX > 4) {
+        CURRENT_BOX = 4
+      }
     }
   } else if (code === 8) {
     //backspace
@@ -65,6 +69,8 @@ const keyboardPressed = (e) => {
     if (CURRENT_BOX >= 1 && CURRENT_BOX <= 4 && boxText === '') {
       CURRENT_BOX--
       box = row[0].childNodes[CURRENT_BOX]
+      box.innerHTML = ''
+    } else if (CURRENT_BOX === 4 && boxText != '') {
       box.innerHTML = ''
     }
   } else if (code === 13) {
