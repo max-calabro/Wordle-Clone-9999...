@@ -54,6 +54,8 @@ const keyboardPressed = (e) => {
 
     if (boxText === '') {
       box.innerHTML = key
+      CURRENT_GUESS += key
+      console.log('guess: ' + CURRENT_GUESS)
 
       //increment to next box
       CURRENT_BOX++
@@ -70,11 +72,38 @@ const keyboardPressed = (e) => {
       CURRENT_BOX--
       box = row[0].childNodes[CURRENT_BOX]
       box.innerHTML = ''
+      CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
+      console.log('guess: ' + CURRENT_GUESS)
     } else if (CURRENT_BOX === 4 && boxText != '') {
       box.innerHTML = ''
+      CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
+      console.log('guess: ' + CURRENT_GUESS)
     }
   } else if (code === 13) {
     //enter
+    let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
+    let box = row[0].childNodes[CURRENT_BOX]
+    let boxText = box.innerText
+
+    if (CURRENT_BOX === 4 && boxText != '') {
+      if (CURRENT_GUESS === SOLUTION) {
+        console.log('pog')
+        //write win function
+      } else {
+        console.log('wrong')
+        //if current row is the last -> game over
+        //else move to next row down
+        //empty current guess and current box
+        if (CURRENT_ROW != 5) {
+          CURRENT_ROW++
+          CURRENT_BOX = 0
+          CURRENT_GUESS = ''
+        } else {
+          //game over, cause used all rows
+          console.log('game over')
+        }
+      }
+    }
   }
   // //console.log(e)
   // let name = e.key
