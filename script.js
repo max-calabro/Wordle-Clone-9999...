@@ -79,6 +79,26 @@ const backspacePressed = () => {
   }
 }
 
+const doesSolutionShareLettersWithGuess = (row) => {
+  //set current-box to zero and then increment with very loop
+  for (let i = 0; i < 5; i++) {
+    console.log(CURRENT_GUESS[i])
+    //make text white
+    let box = row[0].childNodes[i]
+    box.style.color = 'white'
+    if (SOLUTION.includes(CURRENT_GUESS[i])) {
+      console.log('contained')
+      //make background yellow
+      box.style.backgroundColor = 'var(--yellow)'
+      box.style.border = '2px solid var(--yellow)'
+    } else {
+      //make background grey
+      box.style.backgroundColor = 'var(--dark-grey)'
+      box.style.border = '2px solid var(--dark-grey)'
+    }
+  }
+}
+
 const enterPressed = () => {
   let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
   let box = row[0].childNodes[CURRENT_BOX]
@@ -90,6 +110,7 @@ const enterPressed = () => {
       //write win function
     } else {
       console.log('wrong')
+      doesSolutionShareLettersWithGuess(row)
       //if current row is the last -> game over
       //else move to next row down
       //empty current guess and current box
@@ -102,6 +123,8 @@ const enterPressed = () => {
         console.log('game over')
       }
     }
+  } else {
+    console.log('needs more letters')
   }
 }
 
