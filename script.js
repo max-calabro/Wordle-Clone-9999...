@@ -144,8 +144,7 @@ const isGuessInWordsList = () => {
   if (WORDS.includes(CURRENT_GUESS)) {
     return true
   } else {
-    document.getElementsByClassName('overlay').style.display = 'block'
-    console.log('Guess is not is list')
+    alert('Word not in list')
   }
 }
 
