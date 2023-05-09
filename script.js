@@ -99,6 +99,17 @@ const doesSolutionShareLettersWithGuess = (row) => {
   }
 }
 
+const doesGuessHaveAnyCorrectLetterPlacements = (row) => {
+  for (let i = 0; i < 5; i++) {
+    if (CURRENT_GUESS[i] === SOLUTION[i]) {
+      //set box i to green
+      let box = row[0].childNodes[i]
+      box.style.backgroundColor = 'var(--green)'
+      box.style.border = '2px solid var(--green)'
+    }
+  }
+}
+
 const enterPressed = () => {
   let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
   let box = row[0].childNodes[CURRENT_BOX]
@@ -111,6 +122,7 @@ const enterPressed = () => {
     } else {
       console.log('wrong')
       doesSolutionShareLettersWithGuess(row)
+      doesGuessHaveAnyCorrectLetterPlacements(row)
       //if current row is the last -> game over
       //else move to next row down
       //empty current guess and current box
@@ -128,6 +140,15 @@ const enterPressed = () => {
   }
 }
 
+const isGuessInWordsList = () => {
+  if (WORDS.includes(CURRENT_GUESS)) {
+    return true
+  } else {
+    document.getElementsByClassName('overlay').style.display = 'block'
+    console.log('Guess is not is list')
+  }
+}
+
 const keyboardPressed = (e) => {
   let key = e.key
   let code = e.keyCode
@@ -138,7 +159,9 @@ const keyboardPressed = (e) => {
   } else if (code === 8) {
     backspacePressed()
   } else if (code === 13) {
-    enterPressed()
+    if (isGuessInWordsList()) {
+      enterPressed()
+    }
   }
 }
 

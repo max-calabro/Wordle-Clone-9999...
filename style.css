@@ -20,6 +20,20 @@ h1 {
   text-align: center;
 }
 
+.overlay {
+  position: fixed;
+  display: none;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rbgs(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
 .game-board-and-keyboard {
   display: flex;
   justify-content: center;
