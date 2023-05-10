@@ -115,6 +115,33 @@ const anyReapeatLetters = (str) => {
   return /(.).*\1/.test(str)
 }
 
+const correctlyColorRepeatLetters = (repeatsNum, letterOfIntrest) => {
+  let indexOfFirst = SOLUTION.indexOf(letterOfIntrest)
+  //color correct plaements green
+  for (let i = 0; i < repeatsNum; i++) {
+    if (
+      SOLUTION[SOLUTION.indexOf(letterOfIntrest, indexOfFirst + i)] ===
+      CURRENT_GUESS[SOLUTION.indexOf(letterOfIntrest, indexOfFirst + i)]
+    ) {
+      //turn guess to green
+      //repeatsNum--
+    }
+  }
+  //color incorrect placements yellow
+  let counter = 0
+  while (repeatsNum > 0 && counter < 5) {
+    console.log(`Number ${counter} time in while loops`)
+  }
+}
+
+const doesSolutionShareDupeLettersWithGuess = () => {
+  //no: leave, do nothing
+  //yes: how many times is that letter in SOLUTION? = counter
+  let repeatsNum = 0 //for now
+  let letterOfIntrest = '' //for now
+  correctlyColorRepeatLetters(repeatsNum, letterOfIntrest)
+}
+
 const enterPressed = () => {
   let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
   let box = row[0].childNodes[CURRENT_BOX]
@@ -129,8 +156,9 @@ const enterPressed = () => {
       doesSolutionShareLettersWithGuess(row)
       doesGuessHaveAnyCorrectLetterPlacements(row)
       if (anyReapeatLetters(CURRENT_GUESS)) {
-        //if you're here the guess has duplicate letter
-        console.log('yup')
+        //if you're here the guess has duplicate letters
+        console.log('dupe')
+        doesSolutionShareDupeLettersWithGuess()
       }
       //if current row is the last -> game over
       //else move to next row down
