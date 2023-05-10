@@ -110,6 +110,11 @@ const doesGuessHaveAnyCorrectLetterPlacements = (row) => {
   }
 }
 
+const anyReapeatLetters = (str) => {
+  //this is a regex expression I don't totally understand
+  return /(.).*\1/.test(str)
+}
+
 const enterPressed = () => {
   let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
   let box = row[0].childNodes[CURRENT_BOX]
@@ -123,6 +128,10 @@ const enterPressed = () => {
       console.log('wrong')
       doesSolutionShareLettersWithGuess(row)
       doesGuessHaveAnyCorrectLetterPlacements(row)
+      if (anyReapeatLetters(CURRENT_GUESS)) {
+        //if you're here the guess has duplicate letter
+        console.log('yup')
+      }
       //if current row is the last -> game over
       //else move to next row down
       //empty current guess and current box
