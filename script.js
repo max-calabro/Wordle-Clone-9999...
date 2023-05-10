@@ -117,28 +117,42 @@ const anyReapeatLetters = (str) => {
 
 const correctlyColorRepeatLetters = (repeatsNum, letterOfIntrest) => {
   let indexOfFirst = SOLUTION.indexOf(letterOfIntrest)
+  console.log(`indexOfFirst: ${indexOfFirst}`)
   //color correct plaements green
   for (let i = 0; i < repeatsNum; i++) {
     if (
       SOLUTION[SOLUTION.indexOf(letterOfIntrest, indexOfFirst + i)] ===
       CURRENT_GUESS[SOLUTION.indexOf(letterOfIntrest, indexOfFirst + i)]
     ) {
+      console.log(
+        `SOLUTION: ${
+          SOLUTION[SOLUTION.indexOf(letterOfIntrest, indexOfFirst + i)]
+        }`
+      )
+      console.log(
+        `GUESS: ${
+          CURRENT_GUESS[SOLUTION.indexOf(letterOfIntrest, indexOfFirst + i)]
+        }`
+      )
       //turn guess to green
       //repeatsNum--
+      console.log('turn green')
+      repeatsNum--
     }
   }
   //color incorrect placements yellow
   let counter = 0
   while (repeatsNum > 0 && counter < 5) {
     console.log(`Number ${counter} time in while loops`)
+    counter++
   }
 }
 
 const doesSolutionShareDupeLettersWithGuess = () => {
   //no: leave, do nothing
   //yes: how many times is that letter in SOLUTION? = counter
-  let repeatsNum = 0 //for now
-  let letterOfIntrest = '' //for now
+  let repeatsNum = 2 //for now
+  let letterOfIntrest = 'a' //for now
   correctlyColorRepeatLetters(repeatsNum, letterOfIntrest)
 }
 
