@@ -50,7 +50,7 @@ const letterPressed = (key) => {
     box.innerHTML = key.toUpperCase()
     CURRENT_GUESS += key
     box.style.border = '2px solid var(--dark-grey)'
-    console.log('guess: ' + CURRENT_GUESS)
+    //console.log('guess: ' + CURRENT_GUESS)
 
     //increment to next box
     CURRENT_BOX++
@@ -70,19 +70,19 @@ const backspacePressed = () => {
     box.innerHTML = ''
     box.style.border = '2px solid var(--light-grey)'
     CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
-    console.log('guess: ' + CURRENT_GUESS)
+    //console.log('guess: ' + CURRENT_GUESS)
   } else if (CURRENT_BOX === 4 && boxText != '') {
     box.innerHTML = ''
     box.style.border = '2px solid var(--light-grey)'
     CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
-    console.log('guess: ' + CURRENT_GUESS)
+    //console.log('guess: ' + CURRENT_GUESS)
   }
 }
 
 const doesSolutionShareLettersWithGuess = (row) => {
   //set current-box to zero and then increment with very loop
   for (let i = 0; i < 5; i++) {
-    console.log(CURRENT_GUESS[i])
+    //console.log(CURRENT_GUESS[i])
     //make text white
     let box = row[0].childNodes[i]
     box.style.color = 'white'
@@ -202,7 +202,7 @@ const isGuessInWordsList = () => {
 const keyboardPressed = (e) => {
   let key = e.key
   let code = e.keyCode
-  console.log(key, code)
+  //console.log(key, code)
 
   if (code >= 65 && code <= 122) {
     letterPressed(key)
