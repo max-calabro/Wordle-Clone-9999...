@@ -184,7 +184,7 @@ const enterPressed = () => {
         CURRENT_BOX = 0
         CURRENT_GUESS = ''
       } else {
-        //game over, cause used all rows
+        //game over, cause all rows used
         console.log('game over')
         GAME_OVER = true
       }
@@ -223,6 +223,9 @@ document.addEventListener(
   'keydown',
   (event) => {
     keyboardPressed(event)
+    if (GAME_OVER) {
+      alert(`Game Over. The correct word was '${SOLUTION.toUpperCase()}'`)
+    }
   },
   false
 )
