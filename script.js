@@ -6,6 +6,7 @@ let CURRENT_BOX = 0
 let CURRENT_GUESS = ''
 let SOLUTION = WORDS[Math.floor(Math.random() * WORDS.length)]
 console.log(SOLUTION)
+let GAME_OVER = false
 
 // Functions //
 
@@ -164,6 +165,7 @@ const enterPressed = () => {
   if (CURRENT_BOX === 4 && boxText != '') {
     if (CURRENT_GUESS === SOLUTION) {
       console.log('pog')
+      alert('YOU WIN!~!!!!@!@!!@!!@')
       //write win function
     } else {
       console.log('wrong')
@@ -184,11 +186,11 @@ const enterPressed = () => {
       } else {
         //game over, cause used all rows
         console.log('game over')
-        alert(`Game Over. The correct word was ${SOLUTION}`)
+        GAME_OVER = true
       }
     }
   } else {
-    console.log('needs more letters')
+    alert('needs more letters')
   }
 }
 
