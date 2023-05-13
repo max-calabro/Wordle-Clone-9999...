@@ -184,6 +184,7 @@ const enterPressed = () => {
       } else {
         //game over, cause used all rows
         console.log('game over')
+        alert(`Game Over. The correct word was ${SOLUTION}`)
       }
     }
   } else {
