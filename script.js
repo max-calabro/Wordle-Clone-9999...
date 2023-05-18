@@ -80,6 +80,11 @@ const backspacePressed = () => {
   }
 }
 
+const recolorKeyboard = (letter, color) => {
+  //find box in keyboard with the letter of letter
+  //that box.style.backgroundColor = color
+}
+
 const doesSolutionShareLettersWithGuess = (row) => {
   //set current-box to zero and then increment with very loop
   for (let i = 0; i < 5; i++) {
