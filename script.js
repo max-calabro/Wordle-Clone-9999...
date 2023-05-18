@@ -86,9 +86,9 @@ const recolorKeyboard = (letter, color) => {
     if (button.textContent.includes(`${letter}`)) {
       console.log(button.textContent)
       button.style.backgroundColor = color
+      button.style.color = 'white'
     }
   }
-  //that box.style.backgroundColor = color
 }
 
 const doesSolutionShareLettersWithGuess = (row) => {
