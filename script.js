@@ -83,11 +83,14 @@ const backspacePressed = () => {
 
 const recolorKeyboard = (letter, color) => {
   //find box in keyboard with the letter of letter
+  //ignore enter and del
   for (const button of document.querySelectorAll('button')) {
     if (button.textContent.includes(`${letter}`)) {
-      console.log(button.textContent)
-      button.style.backgroundColor = color
-      button.style.color = 'white'
+      //console.log(button.textContent)
+      if (button.innerHTML != 'Enter' && button.innerHTML != 'Del') {
+        button.style.backgroundColor = color
+        button.style.color = 'white'
+      }
     }
   }
 }
@@ -99,14 +102,15 @@ const doesSolutionShareLettersWithGuess = (row) => {
     //make text white
     let box = row[0].childNodes[i]
     box.style.color = 'white'
+    console.log(CURRENT_GUESS)
     if (SOLUTION.includes(CURRENT_GUESS[i])) {
-      console.log('contained')
+      //console.log('contained')
       //make background yellow
       box.style.backgroundColor = 'var(--yellow)'
       box.style.border = '2px solid var(--yellow)'
 
       //do the same for the visual keyboard
-      console.log('lkjengflknmsdlfk' + box.innerHTML)
+      //console.log('lkjengflknmsdlfk' + box.innerHTML)
       recolorKeyboard(box.innerHTML, 'var(--yellow)')
     } else {
       //make background grey
@@ -136,7 +140,7 @@ const anyReapeatLetters = (str) => {
 
 const correctlyColorRepeatLetters = (repeatsNum, letterOfIntrest) => {
   let indexOfFirst = SOLUTION.indexOf(letterOfIntrest)
-  console.log(`indexOfFirst: ${indexOfFirst}`)
+  //console.log(`indexOfFirst: ${indexOfFirst}`)
   //color correct plaements green
   for (let i = 0; i < repeatsNum; i++) {
     if (
@@ -182,16 +186,16 @@ const enterPressed = () => {
 
   if (CURRENT_BOX === 4 && boxText != '') {
     if (CURRENT_GUESS === SOLUTION) {
-      console.log('pog')
+      //console.log('pog')
       alert('YOU WIN!~!!!!@!@!!@!!@')
       //write win function
     } else {
-      console.log('wrong')
+      //console.log('wrong')
       doesSolutionShareLettersWithGuess(row)
       doesGuessHaveAnyCorrectLetterPlacements(row)
       if (anyReapeatLetters(CURRENT_GUESS)) {
         //if you're here the guess has duplicate letters
-        console.log('dupe')
+        //console.log('dupe')
         doesSolutionShareDupeLettersWithGuess()
       }
       //if current row is the last -> game over
@@ -221,7 +225,7 @@ const isGuessInWordsList = () => {
 }
 
 const enterOrDelPressed = (e) => {
-  console.log(e.target.innerHTML)
+  //console.log(e.target.innerHTML)
   let target = e.target.innerHTML
   if (target === 'Del') {
     backspacePressed()
