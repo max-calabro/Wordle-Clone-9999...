@@ -97,6 +97,10 @@ const doesSolutionShareLettersWithGuess = (row) => {
       //make background yellow
       box.style.backgroundColor = 'var(--yellow)'
       box.style.border = '2px solid var(--yellow)'
+
+      //do the same for the visual keyboard
+      console.log('lkjengflknmsdlfk' + box.innerHTML)
+      recolorKeyboard(box.innerHTML, 'var(--yellow)')
     } else {
       //make background grey
       box.style.backgroundColor = 'var(--dark-grey)'
