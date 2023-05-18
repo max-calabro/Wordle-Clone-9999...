@@ -49,7 +49,8 @@ const letterPressed = (key) => {
 
   if (boxText === '') {
     box.innerHTML = key.toUpperCase()
-    CURRENT_GUESS += key
+    CURRENT_GUESS += key.toLowerCase()
+    //console.log(`CURRENT_GUESS: ${CURRENT_GUESS}`)
     box.style.border = '2px solid var(--dark-grey)'
     //console.log('guess: ' + CURRENT_GUESS)
 
@@ -219,6 +220,18 @@ const isGuessInWordsList = () => {
   }
 }
 
+const enterOrDelPressed = (e) => {
+  console.log(e.target.innerHTML)
+  let target = e.target.innerHTML
+  if (target === 'Del') {
+    backspacePressed()
+  } else if (target === 'Enter') {
+    if (isGuessInWordsList()) {
+      enterPressed()
+    }
+  }
+}
+
 const keyboardPressed = (e) => {
   //for keyboard
   let key = e.key
@@ -226,11 +239,11 @@ const keyboardPressed = (e) => {
 
   //for mouse
   if (e.type === 'mousedown') {
-    console.log(e)
+    //console.log(e)
     key = e.target.innerHTML
     code = e.target.innerHTML.charCodeAt(0)
   }
-  console.log(`key: ${key}, code: ${code}`)
+  //console.log(`key: ${key}, code: ${code}`)
 
   if (code >= 65 && code <= 122) {
     letterPressed(key)
@@ -260,6 +273,19 @@ for (const button of document.querySelectorAll('.keyboard-button')) {
     'mousedown',
     (event) => {
       keyboardPressed(event)
+      if (GAME_OVER) {
+        alert(`Game Over. The correct word was '${SOLUTION.toUpperCase()}'`)
+      }
+    },
+    false
+  )
+}
+
+for (const button of document.querySelectorAll('.keyboard-button-Enter-Del')) {
+  button.addEventListener(
+    'mousedown',
+    (event) => {
+      enterOrDelPressed(event)
       if (GAME_OVER) {
         alert(`Game Over. The correct word was '${SOLUTION.toUpperCase()}'`)
       }
