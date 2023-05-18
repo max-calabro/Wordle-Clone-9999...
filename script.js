@@ -220,9 +220,17 @@ const isGuessInWordsList = () => {
 }
 
 const keyboardPressed = (e) => {
+  //for keyboard
   let key = e.key
   let code = e.keyCode
-  //console.log(key, code)
+
+  //for mouse
+  if (e.type === 'mousedown') {
+    console.log(e)
+    key = e.target.innerHTML
+    code = e.target.innerHTML.charCodeAt(0)
+  }
+  console.log(`key: ${key}, code: ${code}`)
 
   if (code >= 65 && code <= 122) {
     letterPressed(key)
@@ -246,3 +254,16 @@ document.addEventListener(
   },
   false
 )
+
+for (const button of document.querySelectorAll('.keyboard-button')) {
+  button.addEventListener(
+    'mousedown',
+    (event) => {
+      keyboardPressed(event)
+      if (GAME_OVER) {
+        alert(`Game Over. The correct word was '${SOLUTION.toUpperCase()}'`)
+      }
+    },
+    false
+  )
+}
