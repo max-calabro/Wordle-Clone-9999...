@@ -82,6 +82,12 @@ const backspacePressed = () => {
 
 const recolorKeyboard = (letter, color) => {
   //find box in keyboard with the letter of letter
+  for (const button of document.querySelectorAll('button')) {
+    if (button.textContent.includes(`${letter}`)) {
+      console.log(button.textContent)
+      button.style.backgroundColor = color
+    }
+  }
   //that box.style.backgroundColor = color
 }
 
@@ -105,6 +111,7 @@ const doesSolutionShareLettersWithGuess = (row) => {
       //make background grey
       box.style.backgroundColor = 'var(--dark-grey)'
       box.style.border = '2px solid var(--dark-grey)'
+      recolorKeyboard(box.innerHTML, 'var(--dark-grey)')
     }
   }
 }
@@ -116,6 +123,7 @@ const doesGuessHaveAnyCorrectLetterPlacements = (row) => {
       let box = row[0].childNodes[i]
       box.style.backgroundColor = 'var(--green)'
       box.style.border = '2px solid var(--green)'
+      recolorKeyboard(box.innerHTML, 'var(--green)')
     }
   }
 }
