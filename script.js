@@ -83,10 +83,11 @@ const backspacePressed = () => {
 
 const recolorKeyboard = (letter, color) => {
   //find box in keyboard with the letter of letter
-  //ignore enter and del
+
   for (const button of document.querySelectorAll('button')) {
     if (button.textContent.includes(`${letter}`)) {
       //console.log(button.textContent)
+      //ignore enter and del
       if (button.innerHTML != 'Enter' && button.innerHTML != 'Del') {
         button.style.backgroundColor = color
         button.style.color = 'white'
