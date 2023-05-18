@@ -110,6 +110,7 @@ h1 {
   border-radius: 4px;
   height: 58px;
   width: 43px;
+  background-color: var(--light-grey);
 }
 
 .keyboard-button-Enter-Del {
@@ -120,5 +121,6 @@ h1 {
   cursor: pointer;
   width: 65.4px;
   font-weight: bold;
+  background-color: var(--light-grey);
 
 }
