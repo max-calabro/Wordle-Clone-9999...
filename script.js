@@ -38,7 +38,7 @@ const initGameBoard = () => {
   }
   let h1 = document.createElement('h1')
   document.body.prepend(h1)
-  h1.innerText = 'Wordle Clone'
+  h1.innerText = 'Wordle'
 }
 initGameBoard()
 
