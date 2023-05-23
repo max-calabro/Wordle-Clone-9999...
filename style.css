@@ -46,6 +46,7 @@ h1 {
 .game-board-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   
   padding: 10px;
 
@@ -69,7 +70,9 @@ h1 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 5px;
-  width: 100%;
+  /* width: 100%; */
+
+  --animate-duration: 0.5s;
 }
 
 .letter-box-0,.letter-box-1,.letter-box-2,.letter-box-3,.letter-box-4 {
@@ -83,6 +86,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  --animate-duration: 0.1s;
 }
 
 #keyboard-cont {

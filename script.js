@@ -43,18 +43,14 @@ const initGameBoard = () => {
 }
 initGameBoard()
 
-const animateCSS = (element, animation, animationSpeed, prefix = 'animate__') =>
+const animateCSS = (element, animation, prefix = 'animate__') =>
   new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`
 
-    //console.log(element[0])
-    const node = element[0] //document.querySelector(element)
+    console.log(element)
+    const node = element //[0] //document.querySelector(element)
 
-    node.classList.add(
-      `${prefix}animated`,
-      animationName,
-      `${prefix}${animationSpeed}`
-    )
+    node.classList.add(`${prefix}animated`, animationName)
 
     // clean classes and resolve promise
     function handleAnimationEnd(event) {
@@ -72,6 +68,7 @@ const letterPressed = (key) => {
   let boxText = box.innerText
 
   if (boxText === '') {
+    animateCSS(box, 'pulse')
     box.innerHTML = key.toUpperCase()
     CURRENT_GUESS += key.toLowerCase()
     //console.log(`CURRENT_GUESS: ${CURRENT_GUESS}`)
@@ -126,22 +123,30 @@ const doesSolutionShareLettersWithGuess = (row) => {
     //console.log(CURRENT_GUESS[i])
     //make text white
     let box = row[0].childNodes[i]
+
     box.style.color = 'white'
     console.log(CURRENT_GUESS)
     if (SOLUTION.includes(CURRENT_GUESS[i])) {
       //console.log('contained')
       //make background yellow
-      box.style.backgroundColor = 'var(--yellow)'
-      box.style.border = '2px solid var(--yellow)'
+      let delay = 250 * i
+      setTimeout(() => {
+        animateCSS(box, 'flipInX')
+        box.style.backgroundColor = 'var(--yellow)'
+        box.style.border = '2px solid var(--yellow)'
 
-      //do the same for the visual keyboard
-      //console.log('lkjengflknmsdlfk' + box.innerHTML)
-      recolorKeyboard(box.innerHTML, 'var(--yellow)')
+        //do the same for the visual keyboard
+        //console.log('lkjengflknmsdlfk' + box.innerHTML)
+        recolorKeyboard(box.innerHTML, 'var(--yellow)')
+      }, delay)
     } else {
-      //make background grey
-      box.style.backgroundColor = 'var(--dark-grey)'
-      box.style.border = '2px solid var(--dark-grey)'
-      recolorKeyboard(box.innerHTML, 'var(--dark-grey)')
+      let delay = 250 * i
+      setTimeout(() => {
+        //make background grey
+        box.style.backgroundColor = 'var(--dark-grey)'
+        box.style.border = '2px solid var(--dark-grey)'
+        recolorKeyboard(box.innerHTML, 'var(--dark-grey)')
+      }, delay)
     }
   }
 }
@@ -246,8 +251,8 @@ const isGuessInWordsList = () => {
     return true
   } else {
     let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
-    animateCSS(row, 'shakeX', 'faster')
-    alert('Word not in list')
+    animateCSS(row[0], 'shakeX')
+    //alert('Word not in list')
   }
 }
 
