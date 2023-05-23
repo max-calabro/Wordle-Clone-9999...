@@ -1,5 +1,5 @@
 import { WORDS } from './words.js'
-import 'animate.css'
+//import 'animate.css'
 
 //  Globals //
 let CURRENT_ROW = 0
@@ -46,7 +46,9 @@ initGameBoard()
 const animateCSS = (element, animation, prefix = 'animate__') =>
   new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`
-    const node = document.querySelector(element)
+
+    console.log(element[0])
+    const node = element[0] //document.querySelector(element)
 
     node.classList.add(`${prefix}animated`, animationName)
 
@@ -239,6 +241,8 @@ const isGuessInWordsList = () => {
   if (WORDS.includes(CURRENT_GUESS)) {
     return true
   } else {
+    let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
+    animateCSS(row, 'shakeX')
     alert('Word not in list')
   }
 }
