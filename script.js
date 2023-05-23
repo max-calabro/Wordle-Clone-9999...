@@ -1,4 +1,5 @@
 import { WORDS } from './words.js'
+import 'animate.css'
 
 //  Globals //
 let CURRENT_ROW = 0
