@@ -43,6 +43,23 @@ const initGameBoard = () => {
 }
 initGameBoard()
 
+const animateCSS = (element, animation, prefix = 'animate__') =>
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`
+    const node = document.querySelector(element)
+
+    node.classList.add(`${prefix}animated`, animationName)
+
+    // clean classes and resolve promise
+    function handleAnimationEnd(event) {
+      event.stopPropogation()
+      node.classList.remove(`${prefix}animated`, animationName)
+      resolve('Animation ended')
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd, { once: true })
+  })
+
 const letterPressed = (key) => {
   let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
   let box = row[0].childNodes[CURRENT_BOX]
