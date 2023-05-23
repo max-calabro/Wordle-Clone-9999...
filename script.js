@@ -43,18 +43,22 @@ const initGameBoard = () => {
 }
 initGameBoard()
 
-const animateCSS = (element, animation, prefix = 'animate__') =>
+const animateCSS = (element, animation, animationSpeed, prefix = 'animate__') =>
   new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`
 
-    console.log(element[0])
+    //console.log(element[0])
     const node = element[0] //document.querySelector(element)
 
-    node.classList.add(`${prefix}animated`, animationName)
+    node.classList.add(
+      `${prefix}animated`,
+      animationName,
+      `${prefix}${animationSpeed}`
+    )
 
     // clean classes and resolve promise
     function handleAnimationEnd(event) {
-      event.stopPropogation()
+      event.stopPropagation()
       node.classList.remove(`${prefix}animated`, animationName)
       resolve('Animation ended')
     }
@@ -242,7 +246,7 @@ const isGuessInWordsList = () => {
     return true
   } else {
     let row = document.getElementsByClassName(`row-${CURRENT_ROW}`)
-    animateCSS(row, 'shakeX')
+    animateCSS(row, 'shakeX', 'faster')
     alert('Word not in list')
   }
 }
