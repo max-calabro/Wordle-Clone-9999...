@@ -32,6 +32,21 @@
 
 ---
 
+### **_Issue Tracker_**
+
+- Correct letter placements are flashing green then colored yellow
+- Double letters/triple letters are not coloring correctly
+
+---
+
+### **_To Do_**
+
+- How to play pop-up on load
+- win/lose pop-ups
+- finish exact layout
+
+---
+
 ### **_Credits_**
 
 ##### NYTimes Wordle: [bloop](https://)
