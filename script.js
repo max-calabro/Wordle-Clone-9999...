@@ -71,9 +71,7 @@ const letterPressed = (key) => {
     animateCSS(box, 'pulse')
     box.innerHTML = key.toUpperCase()
     CURRENT_GUESS += key.toLowerCase()
-    //console.log(`CURRENT_GUESS: ${CURRENT_GUESS}`)
     box.style.border = '2px solid var(--dark-grey)'
-    //console.log('guess: ' + CURRENT_GUESS)
 
     //increment to next box
     CURRENT_BOX++
@@ -93,12 +91,10 @@ const backspacePressed = () => {
     box.innerHTML = ''
     box.style.border = '2px solid var(--light-grey)'
     CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
-    //console.log('guess: ' + CURRENT_GUESS)
   } else if (CURRENT_BOX === 4 && boxText != '') {
     box.innerHTML = ''
     box.style.border = '2px solid var(--light-grey)'
     CURRENT_GUESS = CURRENT_GUESS.slice(0, -1)
-    //console.log('guess: ' + CURRENT_GUESS)
   }
 }
 
