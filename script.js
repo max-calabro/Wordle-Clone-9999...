@@ -207,16 +207,13 @@ const enterPressed = () => {
 
   if (CURRENT_BOX === 4 && boxText != '') {
     if (CURRENT_GUESS === SOLUTION) {
-      //console.log('pog')
       alert('YOU WIN!~!!!!@!@!!@!!@')
       //write win function
     } else {
-      //console.log('wrong')
       doesSolutionShareLettersWithGuess(row)
       doesGuessHaveAnyCorrectLetterPlacements(row)
       if (anyReapeatLetters(CURRENT_GUESS)) {
         //if you're here the guess has duplicate letters
-        //console.log('dupe')
         doesSolutionShareDupeLettersWithGuess()
       }
       //if current row is the last -> game over
@@ -248,7 +245,6 @@ const isGuessInWordsList = () => {
 }
 
 const enterOrDelPressed = (e) => {
-  //console.log(e.target.innerHTML)
   let target = e.target.innerHTML
   if (target === 'Del') {
     backspacePressed()
@@ -266,11 +262,9 @@ const keyboardPressed = (e) => {
 
   //for mouse
   if (e.type === 'mousedown') {
-    //console.log(e)
     key = e.target.innerHTML
     code = e.target.innerHTML.charCodeAt(0)
   }
-  //console.log(`key: ${key}, code: ${code}`)
 
   if (code >= 65 && code <= 122) {
     letterPressed(key)
