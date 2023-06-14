@@ -103,7 +103,6 @@ const recolorKeyboard = (letter, color) => {
 
   for (const button of document.querySelectorAll('button')) {
     if (button.textContent.includes(`${letter}`)) {
-      //console.log(button.textContent)
       //ignore enter and del
       if (button.innerHTML != 'Enter' && button.innerHTML != 'Del') {
         button.style.backgroundColor = color
@@ -116,14 +115,12 @@ const recolorKeyboard = (letter, color) => {
 const doesSolutionShareLettersWithGuess = (row) => {
   //set current-box to zero and then increment with very loop
   for (let i = 0; i < 5; i++) {
-    //console.log(CURRENT_GUESS[i])
     //make text white
     let box = row[0].childNodes[i]
 
     box.style.color = 'white'
     console.log(CURRENT_GUESS)
     if (SOLUTION.includes(CURRENT_GUESS[i])) {
-      //console.log('contained')
       //make background yellow
       let delay = 250 * i
       setTimeout(() => {
@@ -132,7 +129,6 @@ const doesSolutionShareLettersWithGuess = (row) => {
         box.style.border = '2px solid var(--yellow)'
 
         //do the same for the visual keyboard
-        //console.log('lkjengflknmsdlfk' + box.innerHTML)
         recolorKeyboard(box.innerHTML, 'var(--yellow)')
       }, delay)
     } else {
@@ -160,13 +156,12 @@ const doesGuessHaveAnyCorrectLetterPlacements = (row) => {
 }
 
 const anyReapeatLetters = (str) => {
-  //this is a regex expression I don't totally understand
+  //this is a regex expression for finding repeating letters
   return /(.).*\1/.test(str)
 }
 
 const correctlyColorRepeatLetters = (repeatsNum, letterOfIntrest) => {
   let indexOfFirst = SOLUTION.indexOf(letterOfIntrest)
-  //console.log(`indexOfFirst: ${indexOfFirst}`)
   //color correct plaements green
   for (let i = 0; i < repeatsNum; i++) {
     if (
